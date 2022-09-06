@@ -20,14 +20,18 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
+#include "esp_log.h"
 #include "driver/uart.h"
 #include "driver/gpio.h"
 /* MACROS --------------------------------------------------------------------*/
-#define TXD_PIN 	(GPIO_NUM_4)
-#define RXD_PIN 	(GPIO_NUM_5)
+#define TXD_PIN 			(GPIO_NUM_12)
+#define RXD_PIN 			(GPIO_NUM_13)
 
-#define RX_BUF_SIZE	1024
-#define TX_BUF_SIZE	1024
+#define UART_AT_PORT 		UART_NUM_0
+#define PATTERN_AT_COUNT    2
+
+#define RX_BUF_SIZE			1024
+#define TX_BUF_SIZE			1024
 /* ENUMORATIONS --------------------------------------------------------------*/
 
 /* STRUCTURES & TYPEDEFS -----------------------------------------------------*/
@@ -36,7 +40,7 @@
 
 /* FUNCTIONS DECLARATION -----------------------------------------------------*/
 void uart_config	(void);
-
+void uart_event_task(void *pvParameters);
 
 #endif /* MAIN_UART_CONFIG_H_ */
 

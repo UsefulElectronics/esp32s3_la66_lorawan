@@ -27,6 +27,7 @@
 #include "main.h"
 #include "lvgl_demo_ui.h"
 #include "display_config.h"
+#include "uart_config.h"
 /* PRIVATE STRUCTRES ---------------------------------------------------------*/
 
 /* VARIABLES -----------------------------------------------------------------*/
@@ -62,6 +63,8 @@ static void main_creatSysteTasks(void)
 {
 
 	xTaskCreatePinnedToCore(lvglTimerTask, "lvgl Timer", 10000, NULL, 4, NULL, 1);
+
+	xTaskCreatePinnedToCore(uart_event_task, "uart event", 10000, NULL, 4, NULL, 1);
 }
 
 
@@ -76,6 +79,8 @@ void app_main(void)
 
 
     lvgl_demo_ui(display_config());
+
+    uart_config();
 
     main_creatSysteTasks();
 
