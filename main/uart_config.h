@@ -27,7 +27,7 @@
 #define TXD_PIN 			(GPIO_NUM_12)
 #define RXD_PIN 			(GPIO_NUM_13)
 
-#define UART_AT_PORT 		UART_NUM_0
+#define UART_AT_PORT 		UART_NUM_1
 #define PATTERN_AT_COUNT    2
 
 #define RX_BUF_SIZE			1024
