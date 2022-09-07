@@ -44,6 +44,8 @@ static lv_color_t arc_color[] =
 };
 
 static const char *UI = "example";
+
+char * pLvDebugText = NULL;
 /* DEFINITIONS ---------------------------------------------------------------*/
 
 /* MACROS --------------------------------------------------------------------*/
@@ -152,10 +154,15 @@ static void anim_timer_cb(lv_timer_t *timer)
     }
 }
 
+void lvgl_system_logger(char *textPointer)
+{
+	pLvDebugText = &textPointer;
+}
+
 /**
- * @brief
+ * @brief Start creating user interface elements
  *
- * @param scr
+ * @param scr	:	pointer to the Background object
  */
 void lvgl_demo_ui(lv_obj_t *scr)
 {
@@ -165,7 +172,7 @@ void lvgl_demo_ui(lv_obj_t *scr)
 	lv_obj_align(dis, LV_ALIGN_TOP_RIGHT, 0, 0);
 	tv1 = lv_tileview_add_tile(dis, 0, 0, LV_DIR_HOR);
 	tv2 = lv_tileview_add_tile(dis, 0, 1, LV_DIR_HOR);
-	tv3 = lv_tileview_add_tile(dis, 0, 2, LV_DIR_HOR);
+	//Page 1
     // Create image useful electronics logo and put it in the center
 	img_logo = lv_img_create(tv1);
     lv_img_set_src(img_logo, &ue_logo);
@@ -188,8 +195,16 @@ void lvgl_demo_ui(lv_obj_t *scr)
     lv_style_set_text_color(&titleStyle,textColor16);
     lv_style_set_text_font(&titleStyle,  &lv_font_montserrat_26);
 
+    //Page 2
+    lv_obj_t *debug_label = lv_label_create(tv2);
+    String text;
 
-
+    lv_label_set_text(debug_label, pLvDebugText);
+    lv_obj_align(debug_label, LV_ALIGN_TOP_LEFT, 0, 0);
+    lv_obj_t *bat_label = lv_label_create(tv2);
+    lv_obj_align_to(bat_label, debug_label, LV_ALIGN_OUT_TOP_LEFT, 0, 0);
+    lv_obj_add_event_cb(bat_label, update_text_subscriber_cb, LV_EVENT_MSG_RECEIVED, NULL);
+    lv_msg_subsribe_obj(MSG_NEW_VOLT, bat_label, (void *)"VOLT : %d mV");
 
 
 
