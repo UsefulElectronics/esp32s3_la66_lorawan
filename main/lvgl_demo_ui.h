@@ -26,6 +26,8 @@
 
 LV_IMG_DECLARE(ue_logo)
 
+#define MSG_NEW_LOG   		1
+
 /* ENUMORATIONS --------------------------------------------------------------*/
 
 /* STRUCTURES & TYPEDEFS -----------------------------------------------------*/
@@ -39,7 +41,7 @@ typedef struct
 /* FUNCTIONS DECLARATION -----------------------------------------------------*/
 void lvgl_demo_ui(lv_obj_t *scr);
 
-void lvgl_system_logger(char *textPointer);
+//void lvgl_system_logger(char *textPointer);
 #endif /* MAIN_LVGL_DEMO_UI_H_ */
 
 /**************************  Useful Electronics  ****************END OF FILE***/

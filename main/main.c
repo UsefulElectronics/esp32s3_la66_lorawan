@@ -41,6 +41,7 @@
 
 static void main_creatSysteTasks				(void);
 static void lvglTimerTask						(void* param);
+static void systemLoggerTask					(void* param);
 
 
 /* FUNCTION PROTOTYPES -------------------------------------------------------*/
@@ -59,12 +60,32 @@ static void lvglTimerTask(void* param)
 	}
 }
 
+static void systemLoggerTask(void* param)
+{
+	uint8_t logBuffer[RX_BUF_SIZE] = {0};
+	while(1)
+	{
+		if(uartCheckPacketRxFlag())
+		{
+			uartGetRxBuffer(logBuffer);
+			lv_msg_send(MSG_NEW_LOG, logBuffer);
+
+			uartResetPacketRxFlag();
+		}
+
+
+		vTaskDelay(100/portTICK_PERIOD_MS);
+	}
+}
+
 static void main_creatSysteTasks(void)
 {
 
 	xTaskCreatePinnedToCore(lvglTimerTask, "lvgl Timer", 10000, NULL, 4, NULL, 1);
 
 	xTaskCreatePinnedToCore(uart_event_task, "uart event", 10000, NULL, 4, NULL, 1);
+
+	xTaskCreatePinnedToCore(systemLoggerTask, "system log", 1024 * 4, NULL, 4, NULL, 1);
 }
 
 
@@ -83,6 +104,8 @@ void app_main(void)
     uart_config();
 
     main_creatSysteTasks();
+
+
 
 }
 /**************************  Useful Electronics  ****************END OF FILE***/

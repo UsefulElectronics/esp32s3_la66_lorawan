@@ -24,7 +24,50 @@ static QueueHandle_t uart_queue;
 
 /* PRIVATE FUNCTIONS DECLARATION ---------------------------------------------*/
 const char *UART_DEBUG = "UART";
+uartHandler_t	hUart;
 /* FUNCTION PROTOTYPES -------------------------------------------------------*/
+/**
+ * @brief initialize UART handler
+ *
+ */
+void uartBufferInit(void)
+{
+	memset(&hUart, 0,sizeof(uartHandler_t));
+}
+/**
+ * @brief	Get a copy from the received data over UART
+ *
+ * @param 	buffer :	Pointer to the UART RX buffer
+ *
+ * @return	The size of the received packet
+ */
+uint8_t uartGetRxBuffer(uint8_t* buffer)
+{
+	memcpy(buffer, hUart.uart_rxBuffer, hUart.uart_rxPacketSize);
+
+	return hUart.uart_rxPacketSize;
+}
+/**
+ * @brief check if a new packet has been received
+ *
+ * @return packet reception status flag
+ */
+uint8_t uartCheckPacketRxFlag(void)
+{
+	return hUart.uart_status.flags.rxPacket;
+}
+/**
+ * @brief reset packet reception flag
+ *
+ */
+void uartResetPacketRxFlag(void)
+{
+	hUart.uart_status.flags.rxPacket = 0;
+}
+/**
+ * @brief Configure UART peripheral of ESP32
+ *
+ */
 void uart_config(void)
 {
     const uart_config_t uart_config =
@@ -45,8 +88,17 @@ void uart_config(void)
     uart_enable_pattern_det_baud_intr(UART_AT_PORT, '\n', PATTERN_AT_COUNT, 2, 0, 0);
     //Reset the pattern queue length to record at most 20 pattern positions.
     uart_pattern_queue_reset(UART_AT_PORT, 100);
+
+    uartBufferInit();
 }
 
+
+
+/**
+ * @brief UART event task. Here UART RX callback takes place. This task should be started in the main
+ *
+ * @param pvParameters
+ */
 void uart_event_task(void *pvParameters)
 {
     uart_event_t event;
@@ -71,6 +123,10 @@ void uart_event_task(void *pvParameters)
                     ESP_LOGI(UART_DEBUG, "%s",dtmp);
                     ESP_LOGI(UART_DEBUG, "[DATA EVT]:");
 
+
+                    hUart.uart_rxPacketSize = event.size;
+                    memcpy(hUart.uart_rxBuffer, dtmp, event.size);
+                    hUart.uart_status.flags.rxPacket = 1;
                     break;
                 //Event of HW FIFO overflow detected
                 case UART_FIFO_OVF:

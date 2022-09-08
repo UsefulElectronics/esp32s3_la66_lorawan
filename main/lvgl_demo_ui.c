@@ -55,6 +55,7 @@ char * pLvDebugText = NULL;
 void		lvgl_demo_ui(lv_obj_t *scr);
 static void bg_timer_cb(lv_timer_t *timer);
 static void anim_timer_cb(lv_timer_t *timer);
+static void update_text_subscriber_cb(lv_event_t *e);
 /* FUNCTION PROTOTYPES -------------------------------------------------------*/
 /**
  * @brief 	lvgl screen content termination timer callback
@@ -154,9 +155,15 @@ static void anim_timer_cb(lv_timer_t *timer)
     }
 }
 
-void lvgl_system_logger(char *textPointer)
+static void update_text_subscriber_cb(lv_event_t *e)
 {
-	pLvDebugText = &textPointer;
+  lv_obj_t *label = lv_event_get_target(e);
+  lv_msg_t *m = lv_event_get_msg(e);
+
+  const char *fmt = (const char *)lv_msg_get_user_data(m);
+  const int32_t *v = (const int32_t *)lv_msg_get_payload(m);
+
+  lv_label_set_text_fmt(label, fmt, *v);
 }
 
 /**
@@ -197,14 +204,13 @@ void lvgl_demo_ui(lv_obj_t *scr)
 
     //Page 2
     lv_obj_t *debug_label = lv_label_create(tv2);
-    String text;
 
     lv_label_set_text(debug_label, pLvDebugText);
     lv_obj_align(debug_label, LV_ALIGN_TOP_LEFT, 0, 0);
     lv_obj_t *bat_label = lv_label_create(tv2);
     lv_obj_align_to(bat_label, debug_label, LV_ALIGN_OUT_TOP_LEFT, 0, 0);
     lv_obj_add_event_cb(bat_label, update_text_subscriber_cb, LV_EVENT_MSG_RECEIVED, NULL);
-    lv_msg_subsribe_obj(MSG_NEW_VOLT, bat_label, (void *)"VOLT : %d mV");
+    lv_msg_subscribe_obj(MSG_NEW_LOG, bat_label, (void *)"VOLT : %d mV");
 
 
 

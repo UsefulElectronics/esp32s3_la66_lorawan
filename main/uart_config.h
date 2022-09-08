@@ -32,15 +32,36 @@
 
 #define RX_BUF_SIZE			1024
 #define TX_BUF_SIZE			1024
+
+
 /* ENUMORATIONS --------------------------------------------------------------*/
 
 /* STRUCTURES & TYPEDEFS -----------------------------------------------------*/
-
+typedef struct
+{
+	uint8_t uart_rxBuffer[RX_BUF_SIZE];
+	uint8_t uart_txBuffer[TX_BUF_SIZE];
+	uint8_t uart_rxPacketSize;
+	uint8_t uart_txPacketSize;
+	union
+	{
+		uint8_t all;
+		struct
+		{
+			uint8_t reserved		:7,
+					rxPacket		:1;
+		}flags;
+	}uart_status;
+}uartHandler_t;
 /* VARIABLES -----------------------------------------------------------------*/
 
 /* FUNCTIONS DECLARATION -----------------------------------------------------*/
-void uart_config	(void);
-void uart_event_task(void *pvParameters);
+void 	uartBufferInit			(void);
+uint8_t uartGetRxBuffer			(uint8_t* buffer);
+uint8_t uartCheckPacketRxFlag	(void);
+void 	uartResetPacketRxFlag	(void);
+void 	uart_config				(void);
+void 	uart_event_task			(void *pvParameters);
 
 #endif /* MAIN_UART_CONFIG_H_ */
 
