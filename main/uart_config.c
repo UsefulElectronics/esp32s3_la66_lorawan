@@ -120,8 +120,8 @@ void uart_event_task(void *pvParameters)
                 case UART_DATA:
                     ESP_LOGI(UART_DEBUG, "[UART DATA]: %d", event.size);
                     uart_read_bytes(UART_AT_PORT, dtmp, event.size, portMAX_DELAY);
-                    ESP_LOGI(UART_DEBUG, "%s",dtmp);
-                    ESP_LOGI(UART_DEBUG, "[DATA EVT]:");
+//                    ESP_LOGI(UART_DEBUG, "%s",dtmp);
+//                    ESP_LOGI(UART_DEBUG, "[DATA EVT]:");
 
 
                     hUart.uart_rxPacketSize = event.size;

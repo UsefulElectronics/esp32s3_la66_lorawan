@@ -43,7 +43,8 @@ static void main_creatSysteTasks				(void);
 static void lvglTimerTask						(void* param);
 static void systemLoggerTask					(void* param);
 
-
+const char *MAIN = "Main";
+uint8_t logBuffer[RX_BUF_SIZE] = {0};
 /* FUNCTION PROTOTYPES -------------------------------------------------------*/
 
 
@@ -62,7 +63,7 @@ static void lvglTimerTask(void* param)
 
 static void systemLoggerTask(void* param)
 {
-	uint8_t logBuffer[RX_BUF_SIZE] = {0};
+//	uint8_t logBuffer[RX_BUF_SIZE] = {0};
 	while(1)
 	{
 		if(uartCheckPacketRxFlag())
@@ -71,6 +72,7 @@ static void systemLoggerTask(void* param)
 			lv_msg_send(MSG_NEW_LOG, logBuffer);
 
 			uartResetPacketRxFlag();
+			ESP_LOGI(MAIN, "%s", logBuffer);
 		}
 
 

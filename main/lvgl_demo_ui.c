@@ -161,9 +161,11 @@ static void update_text_subscriber_cb(lv_event_t *e)
   lv_msg_t *m = lv_event_get_msg(e);
 
   const char *fmt = (const char *)lv_msg_get_user_data(m);
-  const int32_t *v = (const int32_t *)lv_msg_get_payload(m);
-
-  lv_label_set_text_fmt(label, fmt, *v);
+//  const int32_t *v = (const int32_t *)lv_msg_get_payload(m);
+  const char *v = (const char *)lv_msg_get_payload(m);
+//  lv_label_set_text_fmt(label, fmt, *v);
+  lv_label_set_text(label, v);
+//  lv_label_set_text_fmt(label, "%s", *v);
 }
 
 /**
@@ -205,12 +207,11 @@ void lvgl_demo_ui(lv_obj_t *scr)
     //Page 2
     lv_obj_t *debug_label = lv_label_create(tv2);
 
-    lv_label_set_text(debug_label, pLvDebugText);
+//    lv_label_set_text(debug_label, pLvDebugText);
     lv_obj_align(debug_label, LV_ALIGN_TOP_LEFT, 0, 0);
-    lv_obj_t *bat_label = lv_label_create(tv2);
-    lv_obj_align_to(bat_label, debug_label, LV_ALIGN_OUT_TOP_LEFT, 0, 0);
-    lv_obj_add_event_cb(bat_label, update_text_subscriber_cb, LV_EVENT_MSG_RECEIVED, NULL);
-    lv_msg_subscribe_obj(MSG_NEW_LOG, bat_label, (void *)"VOLT : %d mV");
+    lv_obj_add_event_cb(debug_label, update_text_subscriber_cb, LV_EVENT_MSG_RECEIVED, NULL);
+    lv_label_set_text(debug_label, "0%");
+    lv_msg_subscribe_obj(MSG_NEW_LOG, debug_label, (void *)"%s");
 
 
 
