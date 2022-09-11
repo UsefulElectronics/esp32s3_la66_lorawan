@@ -13,7 +13,7 @@
 
 /* INCLUDES ------------------------------------------------------------------*/
 #include "lvgl_demo_ui.h"
-
+#include "ui.h"
 /* PRIVATE STRUCTRES ---------------------------------------------------------*/
 
 /* VARIABLES -----------------------------------------------------------------*/
@@ -64,7 +64,7 @@ static void update_text_subscriber_cb(lv_event_t *e);
  */
 static void bg_timer_cb(lv_timer_t *timer)
 {
-	static uint8_t flipPage = 1;
+	static uint8_t flipPage = 2;
 
 
 	lv_obj_set_tile_id(dis, 0, flipPage, LV_ANIM_ON);
@@ -154,18 +154,21 @@ static void anim_timer_cb(lv_timer_t *timer)
         timer_ctx->count_val = count;
     }
 }
-
+/**
+ * @brief 	This call back takes place whenever
+ *
+ * @param e
+ */
 static void update_text_subscriber_cb(lv_event_t *e)
 {
   lv_obj_t *label = lv_event_get_target(e);
+
   lv_msg_t *m = lv_event_get_msg(e);
 
-  const char *fmt = (const char *)lv_msg_get_user_data(m);
-//  const int32_t *v = (const int32_t *)lv_msg_get_payload(m);
   const char *v = (const char *)lv_msg_get_payload(m);
-//  lv_label_set_text_fmt(label, fmt, *v);
+
   lv_label_set_text(label, v);
-//  lv_label_set_text_fmt(label, "%s", *v);
+
 }
 
 /**
@@ -181,6 +184,7 @@ void lvgl_demo_ui(lv_obj_t *scr)
 	lv_obj_align(dis, LV_ALIGN_TOP_RIGHT, 0, 0);
 	tv1 = lv_tileview_add_tile(dis, 0, 0, LV_DIR_HOR);
 	tv2 = lv_tileview_add_tile(dis, 0, 1, LV_DIR_HOR);
+	tv3 = lv_tileview_add_tile(dis, 0, 2, LV_DIR_HOR);
 	//Page 1
     // Create image useful electronics logo and put it in the center
 	img_logo = lv_img_create(tv1);
@@ -212,6 +216,9 @@ void lvgl_demo_ui(lv_obj_t *scr)
     lv_obj_add_event_cb(debug_label, update_text_subscriber_cb, LV_EVENT_MSG_RECEIVED, NULL);
     lv_label_set_text(debug_label, "0%");
     lv_msg_subscribe_obj(MSG_NEW_LOG, debug_label, (void *)"%s");
+    //Page 3
+    ui_init(tv3);
+
 
 
 

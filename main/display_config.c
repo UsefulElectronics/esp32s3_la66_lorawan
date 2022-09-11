@@ -18,6 +18,7 @@
 
 /* VARIABLES -----------------------------------------------------------------*/
 const char *TAG = "Display";
+static uint8_t is_initialized_lvgl = 0;
 //lv_disp_drv_t 			disp_drv;      // contains callback functions
 //esp_lcd_panel_handle_t 	panel_handle = NULL;
 //lv_obj_t *displayObject;
@@ -34,8 +35,12 @@ static void example_lvgl_flush_cb				(lv_disp_drv_t *drv, const lv_area_t *area,
 
 static bool example_notify_lvgl_flush_ready(esp_lcd_panel_io_handle_t panel_io, esp_lcd_panel_io_event_data_t *edata, void *user_ctx)
 {
-    lv_disp_drv_t *disp_driver = (lv_disp_drv_t *)user_ctx;
-    lv_disp_flush_ready(disp_driver);
+	if (is_initialized_lvgl)
+	{
+	    lv_disp_drv_t *disp_driver = (lv_disp_drv_t *)user_ctx;
+	    lv_disp_flush_ready(disp_driver);
+	}
+
     return false;
 }
 
@@ -140,6 +145,16 @@ lv_obj_t * display_config				(void)
     // the gap is LCD panel specific, even panels with the same driver IC, can have different gap value
     esp_lcd_panel_set_gap(panel_handle, 0, 35);
 
+//    ledcSetup(0, 10000, 8);
+//    ledcAttachPin(EXAMPLE_PIN_NUM_BK_LIGHT, 0);
+//    for (uint8_t i = 0; i < 0xFF; i++)
+//    {
+//		ledcWrite(0, i);
+//		for (uint32_t j = 0; j < 0xFFFF; j++)
+//		{
+//
+//		}
+//    }
 
 
     ESP_LOGI(TAG, "Turn on LCD backlight");
@@ -167,7 +182,7 @@ lv_obj_t * display_config				(void)
     disp_drv.draw_buf = &disp_buf;
     disp_drv.user_data = panel_handle;
     lv_disp_t *disp = lv_disp_drv_register(&disp_drv);
-
+    is_initialized_lvgl = 1;
     //Configuration is completed.
 
 

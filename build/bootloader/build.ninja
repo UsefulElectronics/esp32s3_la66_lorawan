@@ -199,7 +199,7 @@ build project_elf_src_esp32s3.c: CUSTOM_COMMAND
 # Custom command for CMakeFiles\confserver
 
 build CMakeFiles/confserver: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/prepare_kconfig_files.py --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/confserver.py --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env --kconfig C:/Espressif/frameworks/esp-idf-v4.4.1/Kconfig --sdkconfig-rename C:/Espressif/frameworks/esp-idf-v4.4.1/sdkconfig.rename --config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/prepare_kconfig_files.py --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/confserver.py --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env --kconfig C:/Espressif/frameworks/esp-idf-v4.4.1/Kconfig --sdkconfig-rename C:/Espressif/frameworks/esp-idf-v4.4.1/sdkconfig.rename --config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig"
   pool = console
 
 
@@ -207,7 +207,7 @@ build CMakeFiles/confserver: CUSTOM_COMMAND
 # Custom command for CMakeFiles\erase_flash
 
 build CMakeFiles/erase_flash: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\components\esptool_py && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -D IDF_PATH="C:/Espressif/frameworks/esp-idf-v4.4.1" -D SERIAL_TOOL="C:/Users/Ward/.espressif/python_env/idf4.4_py3.8_env/Scripts/python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/components/esptool_py/esptool/esptool.py --chip esp32s3" -D SERIAL_TOOL_ARGS="erase_flash" -P run_serial_tool.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\components\esptool_py && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -D IDF_PATH="C:/Espressif/frameworks/esp-idf-v4.4.1" -D SERIAL_TOOL="python C:/Espressif/frameworks/esp-idf-v4.4.1/components/esptool_py/esptool/esptool.py --chip esp32s3" -D SERIAL_TOOL_ARGS="erase_flash" -P run_serial_tool.cmake"
   pool = console
 
 
@@ -221,7 +221,7 @@ build CMakeFiles/app: phony || _project_elf_src bootloader.elf esp-idf/bootloade
 # Custom command for CMakeFiles\menuconfig
 
 build CMakeFiles/menuconfig: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/prepare_kconfig_files.py --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/confgen.py --kconfig C:/Espressif/frameworks/esp-idf-v4.4.1/Kconfig --sdkconfig-rename C:/Espressif/frameworks/esp-idf-v4.4.1/sdkconfig.rename --config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env --env IDF_TARGET=esp32s3 --env IDF_ENV_FPGA= --dont-write-deprecated --output config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/check_term.py && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -E env COMPONENT_KCONFIGS_SOURCE_FILE=C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/kconfigs.in COMPONENT_KCONFIGS_PROJBUILD_SOURCE_FILE=C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/kconfigs_projbuild.in IDF_CMAKE=y KCONFIG_CONFIG=C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig IDF_TARGET=esp32s3 IDF_ENV_FPGA= C:/Users/Ward/.espressif/python_env/idf4.4_py3.8_env/Scripts/python.exe -m menuconfig C:/Espressif/frameworks/esp-idf-v4.4.1/Kconfig && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/confgen.py --kconfig C:/Espressif/frameworks/esp-idf-v4.4.1/Kconfig --sdkconfig-rename C:/Espressif/frameworks/esp-idf-v4.4.1/sdkconfig.rename --config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env --env IDF_TARGET=esp32s3 --env IDF_ENV_FPGA= --output config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/prepare_kconfig_files.py --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/confgen.py --kconfig C:/Espressif/frameworks/esp-idf-v4.4.1/Kconfig --sdkconfig-rename C:/Espressif/frameworks/esp-idf-v4.4.1/sdkconfig.rename --config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env --env IDF_TARGET=esp32s3 --env IDF_ENV_FPGA= --dont-write-deprecated --output config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/check_term.py && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -E env COMPONENT_KCONFIGS_SOURCE_FILE=C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/kconfigs.in COMPONENT_KCONFIGS_PROJBUILD_SOURCE_FILE=C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/kconfigs_projbuild.in IDF_CMAKE=y KCONFIG_CONFIG=C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig IDF_TARGET=esp32s3 IDF_ENV_FPGA= python -m menuconfig C:/Espressif/frameworks/esp-idf-v4.4.1/Kconfig && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/kconfig_new/confgen.py --kconfig C:/Espressif/frameworks/esp-idf-v4.4.1/Kconfig --sdkconfig-rename C:/Espressif/frameworks/esp-idf-v4.4.1/sdkconfig.rename --config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig --env-file C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/config.env --env IDF_TARGET=esp32s3 --env IDF_ENV_FPGA= --output config C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/sdkconfig"
   pool = console
 
 
@@ -235,7 +235,7 @@ build CMakeFiles/gen_project_binary: phony .bin_timestamp || _project_elf_src bo
 # Custom command for .bin_timestamp
 
 build .bin_timestamp: CUSTOM_COMMAND bootloader.elf || _project_elf_src bootloader.elf esp-idf/bootloader_support/libbootloader_support.a esp-idf/efuse/libefuse.a esp-idf/esp_common/libesp_common.a esp-idf/esp_hw_support/libesp_hw_support.a esp-idf/esp_rom/libesp_rom.a esp-idf/esp_system/libesp_system.a esp-idf/hal/libhal.a esp-idf/log/liblog.a esp-idf/main/libmain.a esp-idf/micro-ecc/libmicro-ecc.a esp-idf/soc/libsoc.a esp-idf/spi_flash/libspi_flash.a esp-idf/xtensa/libxtensa.a
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/components/esptool_py/esptool/esptool.py --chip esp32s3 elf2image --flash_mode dio --flash_freq 80m --flash_size 16MB -o C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.bin C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.elf && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -E echo "Generated C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.bin" && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -E md5sum C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.bin > C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/.bin_timestamp"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && python C:/Espressif/frameworks/esp-idf-v4.4.1/components/esptool_py/esptool/esptool.py --chip esp32s3 elf2image --flash_mode dio --flash_freq 80m --flash_size 16MB -o C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.bin C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.elf && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -E echo "Generated C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.bin" && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -E md5sum C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.bin > C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/.bin_timestamp"
   DESC = Generating binary image from built executable
   restat = 1
 
@@ -244,7 +244,7 @@ build .bin_timestamp: CUSTOM_COMMAND bootloader.elf || _project_elf_src bootload
 # Custom command for CMakeFiles\monitor
 
 build CMakeFiles/monitor: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\components\esptool_py && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -D IDF_PATH="C:/Espressif/frameworks/esp-idf-v4.4.1" -D SERIAL_TOOL="C:/Users/Ward/.espressif/python_env/idf4.4_py3.8_env/Scripts/python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/idf_monitor.py" -D SERIAL_TOOL_ARGS="--target esp32s3 C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.elf" -D WORKING_DIRECTORY="C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader" -P run_serial_tool.cmake"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\components\esptool_py && C:\Users\Ward\.espressif\tools\cmake\3.20.3\bin\cmake.exe -D IDF_PATH="C:/Espressif/frameworks/esp-idf-v4.4.1" -D SERIAL_TOOL="python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/idf_monitor.py" -D SERIAL_TOOL_ARGS="--target esp32s3 C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.elf" -D WORKING_DIRECTORY="C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader" -P run_serial_tool.cmake"
   pool = console
 
 
@@ -252,28 +252,28 @@ build CMakeFiles/monitor: CUSTOM_COMMAND
 # Custom command for CMakeFiles\size
 
 build CMakeFiles/size: CUSTOM_COMMAND bootloader.map
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/idf_size.py C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.map"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/idf_size.py C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.map"
 
 
 #############################################
 # Custom command for CMakeFiles\size-files
 
 build CMakeFiles/size-files: CUSTOM_COMMAND bootloader.map
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/idf_size.py --files C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.map"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/idf_size.py --files C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.map"
 
 
 #############################################
 # Custom command for CMakeFiles\size-components
 
 build CMakeFiles/size-components: CUSTOM_COMMAND bootloader.map
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/idf_size.py --archives C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.map"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/idf_size.py --archives C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.map"
 
 
 #############################################
 # Custom command for CMakeFiles\dfu
 
 build CMakeFiles/dfu: CUSTOM_COMMAND bootloader || _project_elf_src bootloader.elf esp-idf/bootloader_support/libbootloader_support.a esp-idf/efuse/libefuse.a esp-idf/esp_common/libesp_common.a esp-idf/esp_hw_support/libesp_hw_support.a esp-idf/esp_rom/libesp_rom.a esp-idf/esp_system/libesp_system.a esp-idf/hal/libhal.a esp-idf/log/liblog.a esp-idf/main/libmain.a esp-idf/micro-ecc/libmicro-ecc.a esp-idf/soc/libsoc.a esp-idf/spi_flash/libspi_flash.a esp-idf/xtensa/libxtensa.a gen_project_binary
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/mkdfu.py write -o C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/dfu.bin --json C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/flasher_args.json --pid 9"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/mkdfu.py write -o C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/dfu.bin --json C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/flasher_args.json --pid 9"
   pool = console
 
 
@@ -297,7 +297,7 @@ build CMakeFiles/dfu-flash: CUSTOM_COMMAND
 # Custom command for CMakeFiles\uf2-app
 
 build CMakeFiles/uf2-app: CUSTOM_COMMAND || _project_elf_src bootloader.elf esp-idf/bootloader_support/libbootloader_support.a esp-idf/efuse/libefuse.a esp-idf/esp_common/libesp_common.a esp-idf/esp_hw_support/libesp_hw_support.a esp-idf/esp_rom/libesp_rom.a esp-idf/esp_system/libesp_system.a esp-idf/hal/libhal.a esp-idf/log/liblog.a esp-idf/main/libmain.a esp-idf/micro-ecc/libmicro-ecc.a esp-idf/soc/libsoc.a esp-idf/spi_flash/libspi_flash.a esp-idf/xtensa/libxtensa.a gen_project_binary
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/mkuf2.py write -o C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/uf2-app.bin --json C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/flasher_args.json --chip-id 0xc47e5767 --bin app"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/mkuf2.py write -o C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/uf2-app.bin --json C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/flasher_args.json --chip-id 0xc47e5767 --bin app"
   pool = console
 
 
@@ -305,7 +305,7 @@ build CMakeFiles/uf2-app: CUSTOM_COMMAND || _project_elf_src bootloader.elf esp-
 # Custom command for CMakeFiles\uf2
 
 build CMakeFiles/uf2: CUSTOM_COMMAND bootloader || _project_elf_src bootloader.elf esp-idf/bootloader_support/libbootloader_support.a esp-idf/efuse/libefuse.a esp-idf/esp_common/libesp_common.a esp-idf/esp_hw_support/libesp_hw_support.a esp-idf/esp_rom/libesp_rom.a esp-idf/esp_system/libesp_system.a esp-idf/hal/libhal.a esp-idf/log/liblog.a esp-idf/main/libmain.a esp-idf/micro-ecc/libmicro-ecc.a esp-idf/soc/libsoc.a esp-idf/spi_flash/libspi_flash.a esp-idf/xtensa/libxtensa.a gen_project_binary
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/tools/mkuf2.py write -o C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/uf2.bin --json C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/flasher_args.json --chip-id 0xc47e5767"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader && python C:/Espressif/frameworks/esp-idf-v4.4.1/tools/mkuf2.py write -o C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/uf2.bin --json C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/flasher_args.json --chip-id 0xc47e5767"
   pool = console
 
 # =============================================================================
@@ -1312,14 +1312,14 @@ build esp-idf/efuse/rebuild_cache: phony esp-idf/efuse/CMakeFiles/rebuild_cache.
 # Custom command for esp-idf\efuse\CMakeFiles\efuse_test_table
 
 build esp-idf/efuse/CMakeFiles/efuse_test_table: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader\esp-idf\efuse && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/efuse_table_gen.py C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/test/esp_efuse_test_table.csv -t esp32s3 --max_blk_len 256"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader\esp-idf\efuse && python C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/efuse_table_gen.py C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/test/esp_efuse_test_table.csv -t esp32s3 --max_blk_len 256"
 
 
 #############################################
 # Custom command for esp-idf\efuse\CMakeFiles\efuse-common-table
 
 build esp-idf/efuse/CMakeFiles/efuse-common-table: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader\esp-idf\efuse && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/efuse_table_gen.py C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/esp32s3/esp_efuse_table.csv -t esp32s3 --max_blk_len 256"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader\esp-idf\efuse && python C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/efuse_table_gen.py C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/esp32s3/esp_efuse_table.csv -t esp32s3 --max_blk_len 256"
 
 
 #############################################
@@ -1347,7 +1347,7 @@ build esp-idf/efuse/CMakeFiles/efuse_custom_table: CUSTOM_COMMAND || esp-idf/efu
 # Custom command for esp-idf\efuse\CMakeFiles\show-efuse-table
 
 build esp-idf/efuse/CMakeFiles/show-efuse-table: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader\esp-idf\efuse && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/efuse_table_gen.py C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/esp32s3/esp_efuse_table.csv -t esp32s3 --max_blk_len 256 --info"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader\esp-idf\efuse && python C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/efuse_table_gen.py C:/Espressif/frameworks/esp-idf-v4.4.1/components/efuse/esp32s3/esp_efuse_table.csv -t esp32s3 --max_blk_len 256 --info"
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -1975,7 +1975,7 @@ build esp-idf/esptool_py/rebuild_cache: phony esp-idf/esptool_py/CMakeFiles/rebu
 # Custom command for esp-idf\esptool_py\CMakeFiles\bootloader_check_size
 
 build esp-idf/esptool_py/CMakeFiles/bootloader_check_size: CUSTOM_COMMAND || _project_elf_src bootloader.elf esp-idf/bootloader_support/libbootloader_support.a esp-idf/efuse/libefuse.a esp-idf/esp_common/libesp_common.a esp-idf/esp_hw_support/libesp_hw_support.a esp-idf/esp_rom/libesp_rom.a esp-idf/esp_system/libesp_system.a esp-idf/hal/libhal.a esp-idf/log/liblog.a esp-idf/main/libmain.a esp-idf/micro-ecc/libmicro-ecc.a esp-idf/soc/libsoc.a esp-idf/spi_flash/libspi_flash.a esp-idf/xtensa/libxtensa.a gen_project_binary
-  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader\esp-idf\esptool_py && C:\Users\Ward\.espressif\python_env\idf4.4_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v4.4.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.bin"
+  COMMAND = cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v4.4.1\esp32_workspace\la66_lorawan_8bit_display\build\bootloader\esp-idf\esptool_py && python C:/Espressif/frameworks/esp-idf-v4.4.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Espressif/frameworks/esp-idf-v4.4.1/esp32_workspace/la66_lorawan_8bit_display/build/bootloader/bootloader.bin"
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:

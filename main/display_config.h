@@ -43,6 +43,8 @@
 #define EXAMPLE_PIN_NUM_DATA6          47
 #define EXAMPLE_PIN_NUM_DATA7          48
 
+
+
 #define EXAMPLE_PIN_RD          	   GPIO_NUM_9
 #define EXAMPLE_PIN_PWR          	   15
 #define EXAMPLE_PIN_NUM_PCLK           GPIO_NUM_8		//LCD_WR
