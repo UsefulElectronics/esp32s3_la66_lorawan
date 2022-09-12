@@ -101,6 +101,7 @@ lv_obj_t * display_config				(void)
             EXAMPLE_PIN_NUM_DATA5,
             EXAMPLE_PIN_NUM_DATA6,
             EXAMPLE_PIN_NUM_DATA7,
+
         },
         .bus_width = 8,
         .max_transfer_bytes = LVGL_LCD_BUF_SIZE * sizeof(uint16_t)
@@ -167,7 +168,7 @@ lv_obj_t * display_config				(void)
     lv_init();
     // alloc draw buffers used by LVGL
     // it's recommended to choose the size of the draw buffer(s) to be at least 1/10 screen sized
-    lv_color_t *buf1 = heap_caps_malloc(LVGL_LCD_BUF_SIZE * sizeof(lv_color_t), MALLOC_CAP_DMA );
+    lv_color_t *buf1 = heap_caps_malloc(LVGL_LCD_BUF_SIZE * sizeof(lv_color_t), MALLOC_CAP_DMA | MALLOC_CAP_INTERNAL);
     assert(buf1);
 //    lv_color_t *buf2 = heap_caps_malloc(LVGL_LCD_BUF_SIZE * sizeof(lv_color_t), MALLOC_CAP_DMA );
 //    assert(buf2);
@@ -188,7 +189,8 @@ lv_obj_t * display_config				(void)
 
     ESP_LOGI(TAG, "Install LVGL tick timer");
     // Tick interface for LVGL (using esp_timer to generate 2ms periodic event)
-    const esp_timer_create_args_t lvgl_tick_timer_args = {
+    const esp_timer_create_args_t lvgl_tick_timer_args =
+    {
         .callback = &example_increase_lvgl_tick,
         .name = "lvgl_tick"
     };
