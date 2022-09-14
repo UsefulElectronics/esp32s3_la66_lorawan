@@ -64,7 +64,7 @@ static void update_text_subscriber_cb(lv_event_t *e);
  */
 static void bg_timer_cb(lv_timer_t *timer)
 {
-	static uint8_t flipPage = 2;
+	static uint8_t flipPage = 1;
 
 
 	lv_obj_set_tile_id(dis, 0, flipPage, LV_ANIM_ON);
