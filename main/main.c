@@ -28,6 +28,7 @@
 #include "lvgl_demo_ui.h"
 #include "display_config.h"
 #include "uart_config.h"
+#include "lora_pingpong.h"
 /* PRIVATE STRUCTRES ---------------------------------------------------------*/
 
 /* VARIABLES -----------------------------------------------------------------*/
@@ -63,7 +64,7 @@ static void lvglTimerTask(void* param)
 
 static void systemLoggerTask(void* param)
 {
-//	uint8_t logBuffer[RX_BUF_SIZE] = {0};
+	int8_t rssi = 0;
 	while(1)
 	{
 		if(uartCheckPacketRxFlag())
@@ -71,8 +72,18 @@ static void systemLoggerTask(void* param)
 			uartGetRxBuffer(logBuffer);
 			lv_msg_send(MSG_NEW_LOG, logBuffer);
 
+			if(PINGPONG_RSSI == lora_packetDetect(logBuffer))
+			{
+				lora_getParameter(logBuffer, &rssi);
+				ESP_LOGI(MAIN, "rssi: %d", rssi);
+				rssi = 0;
+			}
+
+
 			uartResetPacketRxFlag();
-			ESP_LOGI(MAIN, "%s", logBuffer);
+
+
+			memset(logBuffer, 0, RX_BUF_SIZE);
 		}
 
 
