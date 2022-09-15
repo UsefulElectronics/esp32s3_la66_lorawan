@@ -15435,8 +15435,8 @@ LOAD c:/users/ward/.espressif/tools/xtensa-esp32s3-elf/esp-2021r2-patch3-8.4.0/x
                 0x000000003fca1034        0x4 esp-idf/app_update/libapp_update.a(esp_ota_ops.c.obj)
  .bss           0x000000003fca1038        0x4 c:/users/ward/.espressif/tools/xtensa-esp32s3-elf/esp-2021r2-patch3-8.4.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/8.4.0/../../../../xtensa-esp32s3-elf/lib/no-rtti\libc.a(lib_a-environ.o)
                 0x000000003fca1038                environ
- *(.dynbss .dynsbss .gnu.linkonce.b .gnu.linkonce.b.* .gnu.linkonce.sb .gnu.linkonce.sb.* .gnu.linkonce.sb2 .gnu.linkonce.sb2.* .sbss .sbss.* .sbss2 .sbss2.* .scommon .share.mem)
  *(.ext_ram.bss .ext_ram.bss.*)
+ *(.dynbss .dynsbss .gnu.linkonce.b .gnu.linkonce.b.* .gnu.linkonce.sb .gnu.linkonce.sb.* .gnu.linkonce.sb2 .gnu.linkonce.sb2.* .sbss .sbss.* .sbss2 .sbss2.* .scommon .share.mem)
  *(COMMON)
  COMMON         0x000000003fca103c        0x4 esp-idf/heap/libheap.a(heap_caps_init.c.obj)
                 0x000000003fca103c                registered_heaps

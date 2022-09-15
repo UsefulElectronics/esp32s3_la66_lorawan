@@ -66,14 +66,14 @@ pingpongMsgId_e lora_packetDetect (uint8_t* buffer)
  */
 void lora_getParameter		(uint8_t* buffer, int8_t* rssiValue)
 {
-	const uint8_t packetOffset 		= 10;		//9 + 1
+	const uint8_t packetOffset 		= 9;		//9 + 1
 	for(uint8_t i = 0; i < 3; ++i)
 	{
 		if(isdigit(buffer[packetOffset + i]))
 		{
 			*rssiValue *= 10;
 			*rssiValue += buffer[packetOffset + i] - '0';
-			ESP_LOGI(DEBUG_LORA, "digit: %d", buffer[packetOffset + i]);
+
 		}
 		else
 		{
