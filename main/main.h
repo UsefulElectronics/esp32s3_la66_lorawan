@@ -18,15 +18,24 @@
 #include "display_config.h"
 
 /* MACROS --------------------------------------------------------------------*/
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////// Please update the following configuration according to your LCD spec //////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+#define ON_BOARD_BUTTON         GPIO_NUM_14
+#define SYS_TICK()				xTaskGetTickCount() * portTICK_PERIOD_MS
 /* ENUMORATIONS --------------------------------------------------------------*/
 
 /* STRUCTURES & TYPEDEFS -----------------------------------------------------*/
-
+typedef struct
+{
+	uint32_t mainTimer;
+	union
+	{
+		uint8_t all;
+		struct
+		{
+			uint8_t reserved	:7,
+					pageChange	:1;
+		}flags;
+	}main_status;
+}hMain_t;
 /* VARIABLES -----------------------------------------------------------------*/
 
 /* FUNCTIONS DECLARATION -----------------------------------------------------*/

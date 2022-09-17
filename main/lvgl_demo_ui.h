@@ -19,6 +19,8 @@
 #include "lvgl.h"
 #include "esp_log.h"
 
+#include "ui.h"
+#include "ui_helpers.h"
 /* MACROS --------------------------------------------------------------------*/
 #ifndef PI
 #define PI  (3.14159f)
@@ -39,8 +41,8 @@ typedef struct
 /* VARIABLES -----------------------------------------------------------------*/
 
 /* FUNCTIONS DECLARATION -----------------------------------------------------*/
-void lvgl_demo_ui(lv_obj_t *scr);
-
+void lvgl_demo_ui	(lv_obj_t *scr);
+void changePage		(void);
 //void lvgl_system_logger(char *textPointer);
 #endif /* MAIN_LVGL_DEMO_UI_H_ */
 

@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <string.h>
 /* MACROS --------------------------------------------------------------------*/
-
+#define LORA_TIMEOUT		10000
 /* ENUMORATIONS --------------------------------------------------------------*/
 typedef enum
 {
@@ -38,14 +38,14 @@ typedef struct
 		uint8_t all;
 		struct
 		{
-			uint8_t reserved		:7,
-					offline			:1;
+			uint8_t reserved			:7,
+					connectionActive	:1;
 		}flags;
 	}pingpong_status;
 
 }hLoraPingpong_t;
 /* VARIABLES -----------------------------------------------------------------*/
-
+extern hLoraPingpong_t hLoraPingPong;
 /* FUNCTIONS DECLARATION -----------------------------------------------------*/
 pingpongMsgId_e lora_packetDetect 		(uint8_t* buffer);
 void 			lora_getParameter		(uint8_t* buffer, int8_t* rssiValue);

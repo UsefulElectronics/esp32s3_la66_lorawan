@@ -185,5 +185,27 @@ void _ui_checked_set_text_value(lv_obj_t * trg, lv_obj_t * src, char * txt_on, c
     if(lv_obj_has_state(src, LV_STATE_CHECKED)) lv_label_set_text(trg, txt_on);
     else lv_label_set_text(trg, txt_off);
 }
+/**
+ * @brief
+ *
+ * @param activationStatus
+ */
+void _ui_set_panel_color(uint8_t activationStatus)
+{
+	switch (activationStatus)
+	{
+		case 0:
+			lv_obj_set_style_bg_color(ui_Panel1, lv_color_hex(0x595959), LV_PART_MAIN | LV_STATE_DEFAULT);
+			break;
 
+		case 1:
+			lv_obj_set_style_bg_color(ui_Panel1, lv_color_hex(0x00FF00), LV_PART_MAIN | LV_STATE_DEFAULT);
+			break;
+
+		case 2:
+			lv_obj_set_style_bg_color(ui_Panel1, lv_color_hex(0x0000FF), LV_PART_MAIN | LV_STATE_DEFAULT);
+			break;
+
+	}
+}
 

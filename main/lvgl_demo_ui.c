@@ -13,7 +13,7 @@
 
 /* INCLUDES ------------------------------------------------------------------*/
 #include "lvgl_demo_ui.h"
-#include "ui.h"
+
 /* PRIVATE STRUCTRES ---------------------------------------------------------*/
 
 /* VARIABLES -----------------------------------------------------------------*/
@@ -64,15 +64,27 @@ static void update_text_subscriber_cb(lv_event_t *e);
  */
 static void bg_timer_cb(lv_timer_t *timer)
 {
-	static uint8_t flipPage = 1;
+	static uint8_t flipPage = 2;
 
 
 	lv_obj_set_tile_id(dis, 0, flipPage, LV_ANIM_ON);
-
+	lv_timer_del(timer);
 //	flipPage ^= 1;
 
 
 }
+void changePage()
+{
+	static uint8_t pageId = 1;
+	lv_obj_set_tile_id(dis, 0, pageId, LV_ANIM_ON);
+	++pageId;
+	if(3 == pageId)
+	{
+		pageId = 1;
+	}
+}
+
+
 
 void set_value(void * indic, int32_t v)
 {
