@@ -76,6 +76,8 @@ void example_increase_lvgl_tick	(void *arg);
 
 lv_obj_t* display_config	(void);
 
+
+
 #endif /* MAIN_DISPLAY_DISPLAY_CONFIG_H_ */
 
 /**************************  Useful Electronics  ****************END OF FILE***/

@@ -41,11 +41,28 @@ hMain_t hMain;
 static void main_creatSysteTasks				(void);
 static void lvglTimerTask						(void* param);
 static void systemLoggerTask					(void* param);
-static void main_gpio_config				(void);
+static void main_gpio_config					(void);
+static void main_loggerHandler					(uint8_t* logBuffer);
 const char *MAIN = "Main";
 uint8_t logBuffer[RX_BUF_SIZE] = {0};
 /* FUNCTION PROTOTYPES -------------------------------------------------------*/
-
+/**
+ * @brief 	This functions keeps the previous logs saved in a static buffer to replace them later on in the main logger buffer
+ * 			shifted downwards.
+ *
+ * @param 	logBuffer	: Main log buffer pointer.
+ */
+static void main_loggerHandler(uint8_t* logBuffer)
+{
+	static char logCopy[RX_BUF_SIZE] = {0};
+	char tempLog[RX_BUF_SIZE] = {0};
+	uint16_t receivedStringSize = strlen((char*) logBuffer);
+	memcpy(tempLog, logCopy, RX_BUF_SIZE);
+	memcpy(logCopy, logBuffer, RX_BUF_SIZE);
+	//combine the new and the old logs
+	memcpy(logCopy + receivedStringSize, tempLog, RX_BUF_SIZE - receivedStringSize);
+	memcpy(logBuffer, logCopy, RX_BUF_SIZE);
+}
 
 void main_gpio_config(void)
 {
@@ -70,12 +87,14 @@ static void systemLoggerTask(void* param)
 	int8_t rssi = 0;
 	pingpongMsgId_e messageId = 0;
 
+
 	while(1)
 	{
 		if(uartCheckPacketRxFlag())
 		{
 			//Write log to screen
 			uartGetRxBuffer(logBuffer);
+			main_loggerHandler(logBuffer);
 			lv_msg_send(MSG_NEW_LOG, logBuffer);
 			//dealing with user interface depending on the received values
 			messageId = lora_packetDetect(logBuffer);

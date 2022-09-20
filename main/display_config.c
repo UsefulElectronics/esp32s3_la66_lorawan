@@ -23,7 +23,7 @@ static uint8_t is_initialized_lvgl = 0;
 //esp_lcd_panel_handle_t 	panel_handle = NULL;
 //lv_obj_t *displayObject;
 /* DEFINITIONS ---------------------------------------------------------------*/
-
+extern const unsigned char img_log[20000];
 /* MACROS --------------------------------------------------------------------*/
 
 /* PRIVATE FUNCTIONS DECLARATION ---------------------------------------------*/
@@ -128,11 +128,12 @@ lv_obj_t * display_config				(void)
     ESP_LOGI(TAG, "Install LCD driver of st7789");
     esp_lcd_panel_handle_t panel_handle = NULL;
 
-    esp_lcd_panel_dev_config_t panel_config =
+    esp_lcd_panel_dev_config_t panel_config
+	=
     {
         .reset_gpio_num = EXAMPLE_PIN_NUM_RST,
         .color_space = ESP_LCD_COLOR_SPACE_RGB,
-        .bits_per_pixel = 16,
+        .bits_per_pixel = 16,						//16
     };
 
     ESP_ERROR_CHECK(esp_lcd_new_panel_st7789(io_handle, &panel_config, &panel_handle));
@@ -146,23 +147,10 @@ lv_obj_t * display_config				(void)
     // the gap is LCD panel specific, even panels with the same driver IC, can have different gap value
     esp_lcd_panel_set_gap(panel_handle, 0, 35);
 
-//    ledcSetup(0, 10000, 8);
-//    ledcAttachPin(EXAMPLE_PIN_NUM_BK_LIGHT, 0);
-//    for (uint8_t i = 0; i < 0xFF; i++)
-//    {
-//		ledcWrite(0, i);
-//		for (uint32_t j = 0; j < 0xFFFF; j++)
-//		{
-//
-//		}
-//    }
-
 
     ESP_LOGI(TAG, "Turn on LCD backlight");
     gpio_set_level(EXAMPLE_PIN_PWR, true);
     gpio_set_level(EXAMPLE_PIN_NUM_BK_LIGHT, EXAMPLE_LCD_BK_LIGHT_ON_LEVEL);
-
-
 
     ESP_LOGI(TAG, "Initialize LVGL library");
     lv_init();
