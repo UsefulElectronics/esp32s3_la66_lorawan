@@ -18,6 +18,7 @@
 
 /* VARIABLES -----------------------------------------------------------------*/
 static QueueHandle_t uart_queue;
+SemaphoreHandle_t UART_RXsem 	  		= NULL;
 /* DEFINITIONS ---------------------------------------------------------------*/
 
 /* MACROS --------------------------------------------------------------------*/
@@ -104,6 +105,7 @@ void uart_event_task(void *pvParameters)
     uart_event_t event;
     size_t buffered_size;
     uint8_t* dtmp = (uint8_t*) malloc(RX_BUF_SIZE);
+    UART_RXsem = xSemaphoreCreateBinary();
     for(;;)
     {
         //Waiting for UART event.
@@ -120,7 +122,7 @@ void uart_event_task(void *pvParameters)
                 case UART_DATA:
 
                     uart_read_bytes(UART_AT_PORT, dtmp, event.size, portMAX_DELAY);
-
+                    xSemaphoreGive(UART_RXsem);
                     hUart.uart_rxPacketSize = event.size;
                     memcpy(hUart.uart_rxBuffer, dtmp, event.size);
                     hUart.uart_status.flags.rxPacket = 1;

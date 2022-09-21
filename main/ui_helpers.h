@@ -90,7 +90,7 @@ void _ui_slider_set_text_value(lv_obj_t * trg, lv_obj_t * src, char * prefix, ch
 
 void _ui_checked_set_text_value(lv_obj_t * trg, lv_obj_t * src, char * txt_on, char * txt_off);
 
-void _ui_set_panel_color(uint8_t activationStatus);
+void _ui_set_panel_color		(lv_obj_t * trg, uint8_t activationStatus);
 
 
 #endif

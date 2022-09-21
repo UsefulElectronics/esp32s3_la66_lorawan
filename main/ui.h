@@ -27,6 +27,13 @@ extern lv_obj_t * ui_Slider1;
 extern lv_obj_t * ui_Label5;
 extern lv_obj_t * ui_Label6;
 extern lv_obj_t * ui_Panel1;
+extern lv_obj_t * ui_TextArea1;
+extern lv_obj_t * ui_Label1;
+extern lv_obj_t * ui_Label2;
+extern lv_obj_t * ui_TextArea2;
+extern lv_obj_t * ui_Panel2;
+extern lv_obj_t * ui_Panel3;
+extern lv_obj_t * ui_Label3;
 
 
 

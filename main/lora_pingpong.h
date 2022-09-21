@@ -29,9 +29,17 @@ typedef enum
 	PINGPONG_RX_TIMEOUT,
 	PINGPONG_MAX
 }pingpongMsgId_e;
+typedef enum
+{
+	PINGPONG_PING,
+	PINGPONG_PONG,
+	PINGPONG_TYPE_MAX
+}pingpongType_e;
 /* STRUCTURES & TYPEDEFS -----------------------------------------------------*/
 typedef struct
 {
+	uint32_t pingCounter;
+	uint32_t pongCounter;
 	uint32_t timeout;
 	union
 	{
@@ -48,6 +56,7 @@ typedef struct
 extern hLoraPingpong_t hLoraPingPong;
 /* FUNCTIONS DECLARATION -----------------------------------------------------*/
 pingpongMsgId_e lora_packetDetect 		(uint8_t* buffer);
+pingpongMsgId_e lora_pingpongDetect 	(uint8_t* buffer, pingpongMsgId_e messageId);
 void 			lora_getParameter		(uint8_t* buffer, int8_t* rssiValue);
 void 			lora_getSentMsg			(uint8_t* buffer);
 void 			lora_getReceivedMsg		(uint8_t* buffer);

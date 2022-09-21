@@ -130,6 +130,7 @@ void ui_Screen1_screen_init(lv_obj_t *ui_Screen1)
     lv_obj_set_style_radius(ui_Panel2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui_Panel2, lv_color_hex(0x0000FF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Panel2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_side(ui_Panel2, LV_BORDER_SIDE_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Panel3 = lv_obj_create(ui_Panel2);
     lv_obj_set_width(ui_Panel3, 55);
@@ -139,6 +140,7 @@ void ui_Screen1_screen_init(lv_obj_t *ui_Screen1)
     lv_obj_set_style_radius(ui_Panel3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui_Panel3, lv_color_hex(0x404040), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Panel3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_border_side(ui_Panel3, LV_BORDER_SIDE_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_Label3 = lv_label_create(ui_Panel3);
     lv_obj_set_width(ui_Label3, LV_SIZE_CONTENT);   /// 1
@@ -148,6 +150,7 @@ void ui_Screen1_screen_init(lv_obj_t *ui_Screen1)
     lv_obj_set_style_text_color(ui_Label3, lv_color_hex(0x0000FF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_Label3, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_Label3, &lv_font_montserrat_16, LV_PART_MAIN | LV_STATE_DEFAULT);
+
 
     ui_TextArea2 = lv_textarea_create(ui_Screen1);
     lv_obj_set_width(ui_TextArea2, 110);

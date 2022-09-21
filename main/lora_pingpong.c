@@ -26,6 +26,12 @@ const char pingpongMsg[5][12] =
 	"SNR",
 	"OnRxTimeout"
 };
+const char pingpongPayload[2][5] =
+{
+	"PING",
+	"PONG"
+
+};
 const char *DEBUG_LORA = "LORA";
 hLoraPingpong_t hLoraPingPong;
 /* DEFINITIONS ---------------------------------------------------------------*/
@@ -50,6 +56,38 @@ pingpongMsgId_e lora_packetDetect (uint8_t* buffer)
 	for(; packetId < PINGPONG_MAX; ++packetId)
 	{
 		if(0 == memcmp(buffer + packetOffset, pingpongMsg[packetId], cahrCompareCount))
+		{
+			break;
+		}
+
+	}
+	return packetId;
+}
+/**
+ * @brief	Determine if Ping or pong being sent or received
+ *
+ * @param 	buffer	:	Packet received from LA66 module buffer
+ *
+ * @return	Found PingPong ID. If packet is not found then PINGPONG_TYPE_MAX is returned.
+
+ */
+pingpongMsgId_e lora_pingpongDetect (uint8_t* buffer, pingpongMsgId_e messageId)
+{
+	uint8_t packetOffset 			= 0;
+	const uint8_t cahrCompareCount 	= 3;
+	if(PINGPONG_SENT == messageId)
+	{
+		packetOffset = 8;
+	}
+	else if (PINGPONG_RECEIVED == messageId)
+	{
+		packetOffset = 12;
+	}
+//	ESP_LOGI(DEBUG_LORA, "%s",buffer);
+	pingpongType_e packetId = PINGPONG_PING;
+	for(; packetId < PINGPONG_TYPE_MAX; ++packetId)
+	{
+		if(0 == memcmp(buffer + packetOffset, pingpongPayload[packetId], cahrCompareCount))
 		{
 			break;
 		}
