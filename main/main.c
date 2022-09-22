@@ -169,6 +169,17 @@ static void systemLoggerTask(void* param)
 				hMain.main_status.flags.pageChange = 0;
 			}
 
+			if(hLoraPingPong.pingpong_status.flags.connectionActive)
+			{
+				char timeString[20] = {0};
+				sprintf(timeString,"%02d:%02d", hLoraPingPong.minutes, hLoraPingPong.seconds);
+				lora_timeHandler(SYS_TICK());
+				lv_label_set_text(ui_Label3, timeString);
+			}
+			else
+			{
+				lv_label_set_text(ui_Label3, "00:00");
+			}
 
 		}
 

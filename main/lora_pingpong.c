@@ -119,7 +119,25 @@ void lora_getParameter		(uint8_t* buffer, int8_t* rssiValue)
 		}
 	}
 }
-
+/**
+ * @brief 	systick based timer that keeps track of seconds and minutes.
+ *
+ * @param 	sysTick	:	System tick
+ */
+void lora_timeHandler(uint32_t sysTick)
+{
+	static uint32_t timeTracker = 0; //one second
+	if(sysTick - timeTracker > 1000)
+	{
+		timeTracker = sysTick;
+		++hLoraPingPong.seconds;
+		if(hLoraPingPong.seconds >= 60)
+		{
+			hLoraPingPong.seconds = 0;
+			++hLoraPingPong.minutes;
+		}
+	}
+}
 //void lora_connectionTimeout	(uint8_t* buffer);
 //void lora_getParameter		(uint8_t* buffer, int8_t* rssiValue);
 //void lora_getSentMsg		(uint8_t* buffer);

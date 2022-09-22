@@ -40,6 +40,8 @@ typedef struct
 {
 	uint32_t pingCounter;
 	uint32_t pongCounter;
+	uint8_t	 seconds;
+	uint8_t  minutes;
 	uint32_t timeout;
 	union
 	{
@@ -60,6 +62,7 @@ pingpongMsgId_e lora_pingpongDetect 	(uint8_t* buffer, pingpongMsgId_e messageId
 void 			lora_getParameter		(uint8_t* buffer, int8_t* rssiValue);
 void 			lora_getSentMsg			(uint8_t* buffer);
 void 			lora_getReceivedMsg		(uint8_t* buffer);
+void 			lora_timeHandler		(uint32_t sysTick);
 
 #endif /* MAIN_LORA_PINGPONG_H_ */
 
