@@ -120,7 +120,11 @@ void uart_event_task(void *pvParameters)
                 other types of events. If we take too much time on data event, the queue might
                 be full.*/
                 case UART_DATA:
-
+                	if( hUart.uart_status.flags.rxPacket)
+                	{
+                		ESP_LOGI(UART_DEBUG, "%d", event.size);
+                	}
+//                	ESP_LOGI(UART_DEBUG, "%d", event.size);
                     uart_read_bytes(UART_AT_PORT, dtmp, event.size, portMAX_DELAY);
                     xSemaphoreGive(UART_RXsem);
                     hUart.uart_rxPacketSize = event.size;

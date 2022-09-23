@@ -93,6 +93,7 @@ pingpongMsgId_e lora_pingpongDetect (uint8_t* buffer, pingpongMsgId_e messageId)
 		}
 
 	}
+
 	return packetId;
 }
 /**
