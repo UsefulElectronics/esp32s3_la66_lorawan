@@ -13,7 +13,7 @@
 
 /* INCLUDES ------------------------------------------------------------------*/
 #include "uart_config.h"
-
+#include "lora_pingpong.h"
 /* PRIVATE STRUCTRES ---------------------------------------------------------*/
 
 /* VARIABLES -----------------------------------------------------------------*/
@@ -105,6 +105,8 @@ void uart_event_task(void *pvParameters)
     uart_event_t event;
     size_t buffered_size;
     uint8_t* dtmp = (uint8_t*) malloc(RX_BUF_SIZE);
+    pingpongMsgId_e messageId = 0;
+    pingpongType_e pingpongId = 0;
     UART_RXsem = xSemaphoreCreateBinary();
     for(;;)
     {
@@ -120,12 +122,22 @@ void uart_event_task(void *pvParameters)
                 other types of events. If we take too much time on data event, the queue might
                 be full.*/
                 case UART_DATA:
-                	if( hUart.uart_status.flags.rxPacket)
+                	uart_read_bytes(UART_AT_PORT, dtmp, event.size, portMAX_DELAY);
+                	messageId = lora_packetDetect(dtmp);
+                	if (PINGPONG_RECEIVED == messageId || PINGPONG_SENT == messageId)
                 	{
-                		ESP_LOGI(UART_DEBUG, "%d", event.size);
+                		pingpongId = lora_pingpongDetect (dtmp, messageId);
+						if(PINGPONG_PING == pingpongId)
+						{
+							++hLoraPingPong.pingCounter;
+						}
+						else if(PINGPONG_PONG == pingpongId)
+						{
+							++hLoraPingPong.pongCounter;
+						}
                 	}
 //                	ESP_LOGI(UART_DEBUG, "%d", event.size);
-                    uart_read_bytes(UART_AT_PORT, dtmp, event.size, portMAX_DELAY);
+
                     xSemaphoreGive(UART_RXsem);
                     hUart.uart_rxPacketSize = event.size;
                     memcpy(hUart.uart_rxBuffer, dtmp, event.size);
