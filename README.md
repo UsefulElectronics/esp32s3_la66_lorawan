@@ -26,5 +26,16 @@ A simple user interface is designed using squareline software that uses LVGL lib
 
 ***
 
+# ESP32S3 UI Design Using SquareLine Studio with LVGL For LA66 LoRaWAN Module
+***
+### [Tutorial Link](https://youtu.be/Omqit9cUYkk) On [![Build Status](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/wardzx1) 
 
+In this tutorial, SquareLine Studio is used to design a user interface that uses the data received over UART from LA66 LoRaWAN module and displays it on 1.9 inch T Display S3  development board with ESP32S3. 
 
+Using the designed interface, Wireless communication robustness test is conducted over two LA66 modules exchanging dummy data within an indoor environment. 
+
+The way of integrating the designed interface with LVGL library to an existing projected and how to let the system interact and exchange data with it are explained in details.
+
+![Circuit Diagram](https://github.com/UsefulElectronics/esp32s3_la66_lorawan/blob/main/repo%20cover/SquareLine.jpg)
+
+***

@@ -129,7 +129,7 @@ static void systemLoggerTask(void* param)
 					if(PINGPONG_PING == pingpongId)
 					{
 	//					ESP_LOGI(MAIN, "PING Id: %d",messageId);
-//						++hLoraPingPong.pingCounter;
+						++hLoraPingPong.pingCounter;
 						sprintf(panelString, "%d", hLoraPingPong.pingCounter);
 						lv_textarea_set_text(ui_TextArea1, panelString);
 
@@ -137,7 +137,7 @@ static void systemLoggerTask(void* param)
 					else if(PINGPONG_PONG == pingpongId)
 					{
 	//					ESP_LOGI(MAIN, "PONG Id: %d",messageId);
-//						++hLoraPingPong.pongCounter;
+						++hLoraPingPong.pongCounter;
 						sprintf(panelString, "%d", hLoraPingPong.pongCounter);
 						lv_textarea_set_text(ui_TextArea2, panelString);
 					}
