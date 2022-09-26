@@ -10,6 +10,8 @@ Tutorial Series Sponsor PCBWay Website. You can get extra free coupons using the
 ### Dragino
 LA66 LoRaWAN Dragino Arduino shield module:
 https://www.dragino.com/products/lora/item/231-la66-lorawan-shield.html
+Store Link:
+https://shop.dragino.com/
 ***
 
 # ESP32S3 LA66 LoRaWAN Module with LVGL TFT Interface
