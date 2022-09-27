@@ -73,7 +73,8 @@ void uart_config(void)
 {
     const uart_config_t uart_config =
     {
-        .baud_rate = 115200,				//9600
+    	//TODO								//Baud rate must be set to 115200 for PingPong Example
+        .baud_rate = 9600,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
