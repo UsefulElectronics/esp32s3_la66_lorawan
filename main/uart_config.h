@@ -63,6 +63,7 @@ void 	uartResetPacketRxFlag	(void);
 void 	uart_config				(void);
 void 	uart_event_task			(void *pvParameters);
 
+
 #endif /* MAIN_UART_CONFIG_H_ */
 
 /**************************  Useful Electronics  ****************END OF FILE***/

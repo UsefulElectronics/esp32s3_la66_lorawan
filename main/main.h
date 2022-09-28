@@ -16,9 +16,9 @@
 
 /* INCLUDES ------------------------------------------------------------------*/
 #include "display_config.h"
-
+#include "gpio_ui.h"
 /* MACROS --------------------------------------------------------------------*/
-#define ON_BOARD_BUTTON         GPIO_NUM_14
+//#define ON_BOARD_BUTTON         GPIO_NUM_14
 #define SYS_TICK()				xTaskGetTickCount() * portTICK_PERIOD_MS
 /* ENUMORATIONS --------------------------------------------------------------*/
 

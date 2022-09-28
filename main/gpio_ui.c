@@ -42,8 +42,8 @@ void gpioIntConfig(uint8_t gpioNum)
 void gpioIsrHandler(void *arg)								  //Falling edge interrupt used to turn on reception Triggering timer once start bit is detected
 {
 	static BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-	uint8_t gpio_idx = (uint8_t) arg;
-	uint8_t Interrupt_Enable = DISABLE;
+	uint8_t gpio_idx = (uint8_t) arg;								//Can be used to determine the pin that fired the interrupt.
+
 	int16_t Debounce_Counter = 1000;
 	uint32_t gpio_intr_status = READ_PERI_REG(GPIO_STATUS_REG);   //read status to get interrupt status for GPIO0-31
 	uint32_t gpio_intr_status_h = READ_PERI_REG(GPIO_STATUS1_REG);//read status1 to get interrupt status for GPIO32-39
@@ -51,7 +51,7 @@ void gpioIsrHandler(void *arg)								  //Falling edge interrupt used to turn on
 	SET_PERI_REG_MASK(GPIO_STATUS1_W1TC_REG, gpio_intr_status_h); //Clear intr for gpio32-39
 
 //	ESP_LOGW(TAG, "Button pressed");
-	while((Debounce_Counter >= 0) && (Debounce_Counter <= 4000))  //Setting software capacitor to detect
+	while((Debounce_Counter >= 0) && (Debounce_Counter <= 5000))  //Setting software capacitor to detect
 	{															  //To find out if the intrrupt is real or not
 		if(gpio_get_level(gpio_idx) == GPIO_SET)				  //Debounce the pin responsible for interrupt
 		{
@@ -63,15 +63,12 @@ void gpioIsrHandler(void *arg)								  //Falling edge interrupt used to turn on
 		}
 
 	}
-	if(gpio_idx == BTN_EX_IN)
-	{
-		Debounce_Counter = 4000;
-	}
-	if(Debounce_Counter >= 4000 )								  //Debounce counter has reached threshold
+
+	if(Debounce_Counter >= 5000 )								  //Debounce counter has reached threshold
 	{
 		Debounce_Counter = 1000;
-		ButtonIsrGPIO = gpio_idx;								  //Pass the pin responsible for interrupt
-		xSemaphoreGiveFromISR(Button_TXsem, &xHigherPriorityTaskWoken);
+//		ButtonIsrGPIO = gpio_idx;								  //Pass the pin responsible for interrupt
+		xSemaphoreGiveFromISR(button_sem, &xHigherPriorityTaskWoken);
         if(xHigherPriorityTaskWoken)
         {
             portYIELD_FROM_ISR();

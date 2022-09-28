@@ -41,8 +41,10 @@ hMain_t hMain;
 static void main_creatSysteTasks				(void);
 static void lvglTimerTask						(void* param);
 static void systemLoggerTask					(void* param);
-static void main_gpio_config					(void);
+static void button_event_task 					(void *param);
+//static void main_gpio_config					(void);
 static void main_loggerHandler					(uint8_t* logBuffer);
+
 const char *MAIN = "Main";
 uint8_t logBuffer[RX_BUF_SIZE] = {0};
 /* FUNCTION PROTOTYPES -------------------------------------------------------*/
@@ -64,12 +66,12 @@ static void main_loggerHandler(uint8_t* logBuffer)
 	memcpy(logBuffer, logCopy, RX_BUF_SIZE);
 }
 
-void main_gpio_config(void)
-{
-	gpio_pad_select_gpio(ON_BOARD_BUTTON);
-
-	gpio_set_direction(ON_BOARD_BUTTON, GPIO_MODE_INPUT);
-}
+//void main_gpio_config(void)
+//{
+//	gpio_pad_select_gpio(ON_BOARD_BUTTON);
+//
+//	gpio_set_direction(ON_BOARD_BUTTON, GPIO_MODE_INPUT);
+//}
 
 static void lvglTimerTask(void* param)
 {
@@ -80,6 +82,19 @@ static void lvglTimerTask(void* param)
 
 		vTaskDelay(10/portTICK_PERIOD_MS);
 	}
+}
+
+static void button_event_task (void *pvParameters)
+{
+	button_sem = xSemaphoreCreateBinary();
+    for(;;)
+    {
+        //Waiting for button to be pressed event.
+    	if(xSemaphoreTake(button_sem, portMAX_DELAY) == pdTRUE)
+        {
+    		changePage();
+        }
+    }
 }
 
 static void systemLoggerTask(void* param)
@@ -162,12 +177,12 @@ static void systemLoggerTask(void* param)
 				hMain.main_status.flags.pageChange = 1;
 			}
 
-			if(0 == gpio_get_level(ON_BOARD_BUTTON) && hMain.main_status.flags.pageChange)
-			{
-				changePage();
-				hMain.mainTimer = SYS_TICK();
-				hMain.main_status.flags.pageChange = 0;
-			}
+//			if(0 == gpio_get_level(ON_BOARD_BUTTON) && hMain.main_status.flags.pageChange)
+//			{
+//				changePage();
+//				hMain.mainTimer = SYS_TICK();
+//				hMain.main_status.flags.pageChange = 0;
+//			}
 
 			if(hLoraPingPong.pingpong_status.flags.connectionActive)
 			{
@@ -194,6 +209,8 @@ static void main_creatSysteTasks(void)
 
 	xTaskCreatePinnedToCore(uart_event_task, "uart event", 10000, NULL, 4, NULL, 1);
 
+	xTaskCreatePinnedToCore(button_event_task, "Button event", 10000, NULL, 4, NULL, 1);
+
 	xTaskCreatePinnedToCore(systemLoggerTask, "system log", 1024 * 4, NULL, 4, NULL, 1);
 }
 
@@ -209,7 +226,8 @@ void app_main(void)
 
     lvgl_demo_ui(display_config());
 
-    main_gpio_config();
+//    main_gpio_config();
+    gpioIntConfig(ON_BOARD_BUTTON);
 
     uart_config();
 

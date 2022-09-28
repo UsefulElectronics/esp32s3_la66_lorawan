@@ -18,9 +18,19 @@
 #include <stdio.h>
 #include <string.h>
 #include "esp_log.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/queue.h"
+#include "freertos/semphr.h"
 #include "driver/gpio.h"
 /* MACROS --------------------------------------------------------------------*/
+#define ENABLE		1
+#define DISABLE		0
 
+#define GPIO_SET	1
+#define GPIO_RESET	0
+
+#define ON_BOARD_BUTTON         GPIO_NUM_14
 /* ENUMORATIONS --------------------------------------------------------------*/
 
 /* STRUCTURES & TYPEDEFS -----------------------------------------------------*/
