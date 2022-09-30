@@ -17,7 +17,8 @@
 /* PRIVATE STRUCTRES ---------------------------------------------------------*/
 
 /* VARIABLES -----------------------------------------------------------------*/
-static QueueHandle_t uart_queue;
+static QueueHandle_t uartRx_queue;
+static QueueHandle_t uartTx_queue;
 SemaphoreHandle_t UART_RXsem 	  		= NULL;
 /* DEFINITIONS ---------------------------------------------------------------*/
 
@@ -82,7 +83,7 @@ void uart_config(void)
         .source_clk = UART_SCLK_APB,
     };
     // We won't use a buffer for sending data.
-    uart_driver_install(UART_AT_PORT, RX_BUF_SIZE * 2, TX_BUF_SIZE * 2, 20, &uart_queue, 0);
+    uart_driver_install(UART_AT_PORT, RX_BUF_SIZE * 2, TX_BUF_SIZE * 2, 20, &uartRx_queue, 0);
     uart_param_config(UART_AT_PORT, &uart_config);
     uart_set_pin(UART_AT_PORT, TXD_PIN, RXD_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
 
@@ -108,11 +109,11 @@ void uart_event_task(void *pvParameters)
     uint8_t* dtmp = (uint8_t*) malloc(RX_BUF_SIZE);
     pingpongMsgId_e messageId = 0;
     pingpongType_e pingpongId = 0;
-    UART_RXsem = xSemaphoreCreateBinary();
+    UART_RXsem = xSemaphoreCreateCounting( 10, 0 );;
     for(;;)
     {
         //Waiting for UART event.
-        if(xQueueReceive(uart_queue, (void * )&event, (portTickType)portMAX_DELAY))
+        if(xQueueReceive(uartRx_queue, (void * )&event, (portTickType)portMAX_DELAY))
         {
             bzero(dtmp, RX_BUF_SIZE);
 
@@ -151,7 +152,7 @@ void uart_event_task(void *pvParameters)
                     // The ISR has already reset the rx FIFO,
                     // As an example, we directly flush the rx buffer here in order to read more data.
                     uart_flush_input(UART_AT_PORT);
-                    xQueueReset(uart_queue);
+                    xQueueReset(uartRx_queue);
                     break;
                 //Event of UART ring buffer full
                 case UART_BUFFER_FULL:
@@ -159,7 +160,7 @@ void uart_event_task(void *pvParameters)
                     // If buffer full happened, you should consider encreasing your buffer size
                     // As an example, we directly flush the rx buffer here in order to read more data.
                     uart_flush_input(UART_AT_PORT);
-                    xQueueReset(uart_queue);
+                    xQueueReset(uartRx_queue);
                     break;
 
                 //UART_PATTERN_DET
